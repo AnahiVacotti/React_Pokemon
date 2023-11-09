@@ -1,3 +1,5 @@
+
+import ItemCount from '../ItemCount/ItemCount';
 import React from "react";
 
 const ItemListContainer = ({greeting}) => {
@@ -5,5 +7,5 @@ const ItemListContainer = ({greeting}) => {
         <div>{greeting}</div>
     )
 }
-
+<ItemCount/>
 export default ItemListContainer

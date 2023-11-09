@@ -35,3 +35,23 @@
     transition: all 0.3 ease-in-out;
 }
 
+.cardPokemones{
+    display: flex;
+    justify-content: center;
+    border: solid;
+    color: #000;
+    margin: 10px;
+}
+.contadorPokemon{
+display: flex;
+justify-content: space-around;
+align-items: center;
+padding: 5rem;
+}
+
+.botonListo{
+    display: flex;
+    justify-content: space-around;
+    
+    
+}

@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "vite-svg-loader": "^4.0.0"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.18.0"
+  }
+}
