@@ -14,6 +14,7 @@ function PokemonDetail() {
     fetchPokemonDetail();
   }, [id]);
 
+  
   return (
     <div>
       {pokemonDetail ? (
