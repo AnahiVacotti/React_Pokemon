@@ -1,33 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import './PokemonDetail.css'
 
-function PokemonDetail() {
-  const { id } = useParams();
-  const [pokemonDetail, setPokemonDetail] = useState(null);
 
-  useEffect(() => {
-    const fetchPokemonDetail = async () => {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-      const data = await response.json();
-      setPokemonDetail(data);
-    };
-    fetchPokemonDetail();
-  }, [id]);
-
-  
+function PokemonDetail ({mostrar,pokemon, cerrar}) {
   return (
-    <div>
-      {pokemonDetail ? (
-        <div>
-          <h2>{pokemonDetail.name}</h2>
-          <img src={pokemonDetail.sprites.other.dream_world.front_default} alt={pokemonDetail.name} />
-          
-        </div>
-      ) : (
-        <p>Cargando...</p>
-      )}
+  <div className="modalContainer" onClick={cerrar} style={{display: mostrar ? 'grid' : 'none'}}>
+  <section className="modalBody">
+  <div className="imagenContainer">
+    <img src={pokemon.imagen} alt={pokemon.nombre} className="imagenDetalle" />
+    <section>
+      {pokemon.types?.map(type => <span className='tag'> {type} </span>)}
+    </section>
+  </div>
+  <div className="data">
+    <h2 className="titulo"> {pokemon.nombre} ({pokemon.id})</h2>
+    <h3 className="tituloSeccion"> Habilidades </h3>
+    {pokemon.abilities?.map ( ability => <span className='tag'>{ability} </span>)}
+    <h3 className="tituloSeccion"> Estadisticas </h3>
+    <div className='stats'> 
+    {pokemon.stats?.map ( stat => 
+    <section>
+    <span className='puntos'>{stat.base} </span>
+    <span> {stat.name}</span>
+    </section>
+    )}
     </div>
-  );
-}
+
+    </div>
+  </section>
+  </div>
+  
+
+)}
+
 
 export default PokemonDetail;
