@@ -1,54 +1,69 @@
-import './Pokemones.css'
-import usePokemones from '../../Hooks/usePokemones';
-import PokemonDetail from '../PokemonDetail/PokemonDetail';
-import React, { useEffect, useState } from 'react';
-import Buscador from '../Buscador/Buscador';
+import "./Pokemones.css";
 
-function Pokemon ({id, nombre, imagen, verPokemon}) {
-    
+import React, { useEffect, useState } from "react";
 
+import Buscador from "../Buscador/Buscador";
+import PokemonDetail from "../PokemonDetail/PokemonDetail";
+import usePokemones from "../../Hooks/usePokemones";
+
+function Pokemon({ id, nombre, imagen, verPokemon }) {
   return (
-        <div className='PokemonCard' onClick={verPokemon}> 
-        <img src={imagen} alt={nombre} className='PokemonImg'/>
-        <p className='PokemonTitulo'>
+    <div className="PokemonCard" onClick={verPokemon}>
+      <img src={imagen} alt={nombre} className="PokemonImg" />
+      <p className="PokemonTitulo">
         <span> #{id} </span>
         <span> {nombre} </span>
-        </p>
+      </p>
     </div>
-    )
-
+  );
 }
-function Pokemones () {
-  const { pokemones, masPokemones, searchPokemon } = usePokemones ()
-  const [mostrar, setMostrar] = useState ({mostrar: false, pokemon: {} })
-  const [busqueda, setBusqueda] = useState ('')
 
-  const verPokemon = (pokemon) => setMostrar ({mostrar: true, pokemon})
-  const noVerPokemon = () => setMostrar ({mostrar: false, pokemon:{} })
+function Pokemones({ tipo }) {
+  const { pokemones, masPokemones, searchPokemon } = usePokemones();
+  const [mostrar, setMostrar] = useState({ mostrar: false, pokemon: {} });
+  const [busqueda, setBusqueda] = useState("");
+
+  const verPokemon = (pokemon) => setMostrar({ mostrar: true, pokemon });
+  const noVerPokemon = () => setMostrar({ mostrar: false, pokemon: {} });
 
   const buscarPokemon = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (!busqueda) return
-    
-    const pokemon = await searchPokemon (busqueda)
+    if (!busqueda) return;
 
-    setMostrar ({mostrar: true, pokemon })
-  }
+    const pokemon = await searchPokemon(busqueda);
 
-return (
-  
+    setMostrar({ mostrar: true, pokemon });
+  };
+
+  console.log(pokemones[67]);
+  return (
     <>
-      <PokemonDetail {...mostrar} cerrar={noVerPokemon}/>
-      <Buscador busqueda={busqueda} setBusqueda={setBusqueda} buscarPokemon={buscarPokemon}/>
-      <section className='pokemon-container'>
-        { pokemones.map (pokemon => <Pokemon {...pokemon} key={pokemon.id} verPokemon={()=>verPokemon(pokemon)}/>)}
-        <button className='btnBuscar' onClick={masPokemones}> Mostrar mas </button>
-      </section>  
+      <PokemonDetail {...mostrar} cerrar={noVerPokemon} />
+      <Buscador
+        busqueda={busqueda}
+        setBusqueda={setBusqueda}
+        buscarPokemon={buscarPokemon}
+      />
+      <section className="pokemon-container">
+        {pokemones
+          .filter((pokemon) => {
+            if (tipo === "") return true;
+            return pokemon.types.includes(tipo);
+          })
+          .map((pokemon) => (
+            <Pokemon
+              {...pokemon}
+              key={pokemon.id}
+              verPokemon={() => verPokemon(pokemon)}
+            />
+          ))}
+        <button className="btnBuscar" onClick={masPokemones}>
+          Mostrar mas
+        </button>
+      </section>
     </>
-)
+  );
 }
-
-
 
 export default Pokemones;

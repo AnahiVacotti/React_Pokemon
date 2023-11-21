@@ -1,28 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import ItemCount from './components/ItemCount/ItemCount';
-import { Link } from 'react-router-dom';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import PokemonDetail from './components/PokemonDetail/PokemonDetail';
 
-import Pokemones from './components/Pokemones/Pokemones';
+import "./App.css";
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import Navbar from "./components/Navbar/Navbar";
+import Pokemones from "./components/Pokemones/Pokemones";
 
 function App() {
-
   return (
-    <BrowserRouter >
-        <Navbar />
-        <ItemListContainer greeting="¡Bienvenidos entrenadores pokemon!" />
-        <Pokemones />
-        <Routes>
-          <Route path="/" element={<ItemListContainer/> } />
-        </Routes>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Pokemones tipo={""} />} />
+        <Route path="/lucha" element={<Pokemones tipo={"fighting"} />} />
+        <Route path="/acero" element={<Pokemones tipo={"steel"} />} />
+        <Route path="/fuego" element={<Pokemones tipo={"fire"} />} />
+      </Routes>
     </BrowserRouter>
-    
   );
 }
 
