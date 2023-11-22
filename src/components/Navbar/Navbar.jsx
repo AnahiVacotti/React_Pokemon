@@ -7,18 +7,20 @@ const Navbar = () => {
   return (
     <div className="navbar-container">
       <div>
-        <img className="logo-pokebola" alt="pokemon" src={"./pokebola.png"} />
+        <Link to= "/">
+          <img className="logo-pokebola" alt="pokemon" src={"./pokebola.png"} />
+        </Link>
       </div>
       <div>
         <ul className="list-container">
           <li>
-            <Link to="/lucha">
-              <button className="category-button">Lucha</button>
+            <Link to="/planta">
+              <button className="category-button">Planta</button>
             </Link>
           </li>
           <li>
-            <Link to="/acero">
-              <button className="category-button">Acero</button>
+            <Link to="/agua">
+              <button className="category-button">Agua</button>
             </Link>
           </li>
           <li>

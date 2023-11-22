@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Prev } from 'react-bootstrap/esm/PageItem';
-const URL_DEFAULT = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0'
+const URL_DEFAULT = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0'
 const URL_ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/'
 
 

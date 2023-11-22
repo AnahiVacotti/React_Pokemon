@@ -12,10 +12,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Pokemones tipo={""} />} />
-        <Route path="/lucha" element={<Pokemones tipo={"fighting"} />} />
-        <Route path="/acero" element={<Pokemones tipo={"steel"} />} />
+        <Route path="/planta" element={<Pokemones tipo={"grass"} />} />
+        <Route path="/agua" element={<Pokemones tipo={"water"} />} />
         <Route path="/fuego" element={<Pokemones tipo={"fire"} />} />
         <Route path="/pokemon/:numeroDePokemon" element={<PokemonDetail />} />
+        
       </Routes>
     </BrowserRouter>
   );
