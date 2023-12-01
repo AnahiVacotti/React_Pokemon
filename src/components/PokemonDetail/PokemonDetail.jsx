@@ -1,13 +1,31 @@
 import "./PokemonDetail.css";
-
-import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import ItemCount from "../ItemCount/ItemCount";
+import { CartContext } from "../../context/CartContext";
+import { Navbar } from "react-bootstrap";
 
 function PokemonDetail2() {
+  
   const params = useParams();
+  const [ count, setCount ] = useState (0);
+  const stock = 5;
+  const navigate = useNavigate();
+  const {addPokemon} = useContext(CartContext)
 
-  console.log("params", params);
+  const addToCart = () => {
+    console.log(pokemon)
+    console.log(count)
+    addPokemon(pokemon, count)
+  }
+  
+  const handleNavigation = () => {
+  navigate('/cart')
+  };
+
+
 
   const [pokemon, setPokemon] = useState();
 
@@ -16,7 +34,6 @@ function PokemonDetail2() {
       "https://pokeapi.co/api/v2/pokemon/" + params.numeroDePokemon
     );
     const poke = await response.json();
-    console.log(poke);
     const abilities = poke.abilities.map((a) => a.ability.name);
     const stats = poke.stats.map((s) => {
       return { name: s.stat.name, base: s.base_stat };
@@ -44,6 +61,7 @@ function PokemonDetail2() {
   if (!pokemon) return <div>Cargando...</div>;
 
   return (
+
     <div className="modalContainer">
       <section className="modalBody">
         <div className="imagenContainer">
@@ -53,8 +71,8 @@ function PokemonDetail2() {
             className="imagenDetalle"
           />
           <section>
-            {pokemon.types?.map((type) => (
-              <span className="tag"> {type} </span>
+            {pokemon.types?.map((type, index) => (
+              <span key={index} className="tag"> {type} </span>
             ))}
           </section>
         </div>
@@ -64,18 +82,26 @@ function PokemonDetail2() {
             {pokemon.nombre} ({pokemon.id})
           </h2>
           <h3 className="tituloSeccion"> Habilidades </h3>
-          {pokemon.abilities?.map((ability) => (
-            <span className="tag">{ability} </span>
+          {pokemon.abilities?.map((ability, index) => (
+            <span key={index} className="tag">{ability} </span>
           ))}
           <h3 className="tituloSeccion"> Estadisticas </h3>
           <div className="stats">
-            {pokemon.stats?.map((stat) => (
-              <section>
+            {pokemon.stats?.map((stat, index) => (
+              <section key={index}>
                 <span className="puntos">{stat.base} </span>
                 <span> {stat.name}</span>
               </section>
             ))}
           </div>
+        </div>
+        <div>
+          <button onClick={handleNavigation}>Elegir Pokemon!</button>
+          <button onClick={addToCart}> Agregar a la Pokedex</button>
+          <h3>Tus Pokemones:</h3>
+          
+          <h3>Disponibles: {stock} </h3>
+          <ItemCount count={count} setCount={setCount} stock={stock} />
         </div>
       </section>
     </div>

@@ -1,30 +1,23 @@
 import { useRef, useState} from "react"
 
 
-const ItemCount = () => {
-    const [ count, setCount ] = useState (1);
-    const divRef =useRef(null);
-    const renderCount = useRef (1);
+const ItemCount = ({stock ,setCount, count}) => {
     
-
     const onAdd = () => {
-    renderCount.current++;
-    setCount (count + 1)
+    if (count === stock) return;
+    setCount(count + 1 );
 };
+
 const onSubstract = () => {
-    renderCount.current--;
+   if (count === 0) return;
 setCount (count - 1)
 }
-const sumarTexto = () =>{
-divRef.current.innerHTML = 'Ya tienes nuevos compañeros!'
-}
+
   return (
     <div className="contadorPokemon">
       <button className="boton" onClick={onSubstract}>-</button>
-      <h2>{count}</h2>
+      <span>{count}</span>
       <button className="boton" onClick={onAdd}>+</button>
-        <button className="botonListo" onClick={sumarTexto}>Listo!</button>
-        <h3 ref={divRef}></h3>
         
     </div>
         
