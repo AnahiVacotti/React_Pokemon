@@ -10,7 +10,7 @@ import { Navbar } from "react-bootstrap";
 function PokemonDetail2() {
   
   const params = useParams();
-  const [ count, setCount ] = useState (0);
+  const [ count, setCount ] = useState (1);
   const stock = 5;
   const navigate = useNavigate();
   const {addPokemon} = useContext(CartContext)
