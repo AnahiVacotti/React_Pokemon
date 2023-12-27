@@ -1,8 +1,6 @@
 import Pokemones from "../Pokemones/Pokemones";
 const PokemonList = () => {
-  
-
-  return {Pokemones};
+  return { Pokemones };
 };
 
 export default PokemonList;

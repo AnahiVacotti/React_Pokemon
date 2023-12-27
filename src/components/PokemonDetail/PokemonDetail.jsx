@@ -1,31 +1,28 @@
 import "./PokemonDetail.css";
-import { useNavigate } from 'react-router-dom';
+
 import { useContext, useEffect, useState } from "react";
 
-import { useParams } from "react-router-dom";
-import ItemCount from "../ItemCount/ItemCount";
 import { CartContext } from "../../context/CartContext";
-import { Navbar } from "react-bootstrap";
+import ItemCount from "../ItemCount/ItemCount";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function PokemonDetail2() {
-  
   const params = useParams();
-  const [ count, setCount ] = useState (1);
+  const [count, setCount] = useState(1);
   const stock = 5;
   const navigate = useNavigate();
-  const {addPokemon} = useContext(CartContext)
+  const { addPokemon } = useContext(CartContext);
 
   const addToCart = () => {
-    console.log(pokemon)
-    console.log(count)
-    addPokemon(pokemon, count)
-  }
-  
-  const handleNavigation = () => {
-  navigate('/cart')
+    console.log(pokemon);
+    console.log(count);
+    addPokemon(pokemon, count);
   };
 
-
+  const handleNavigation = () => {
+    navigate("/cart");
+  };
 
   const [pokemon, setPokemon] = useState();
 
@@ -61,7 +58,6 @@ function PokemonDetail2() {
   if (!pokemon) return <div>Cargando...</div>;
 
   return (
-
     <div className="modalContainer">
       <section className="modalBody">
         <div className="imagenContainer">
@@ -72,7 +68,10 @@ function PokemonDetail2() {
           />
           <section>
             {pokemon.types?.map((type, index) => (
-              <span key={index} className="tag"> {type} </span>
+              <span key={index} className="tag">
+                {" "}
+                {type}{" "}
+              </span>
             ))}
           </section>
         </div>
@@ -83,7 +82,9 @@ function PokemonDetail2() {
           </h2>
           <h3 className="tituloSeccion"> Habilidades </h3>
           {pokemon.abilities?.map((ability, index) => (
-            <span key={index} className="tag">{ability} </span>
+            <span key={index} className="tag">
+              {ability}{" "}
+            </span>
           ))}
           <h3 className="tituloSeccion"> Estadisticas </h3>
           <div className="stats">
@@ -99,7 +100,7 @@ function PokemonDetail2() {
           <button onClick={handleNavigation}>Elegir Pokemon!</button>
           <button onClick={addToCart}> Agregar a la Pokedex</button>
           <h3>Tus Pokemones:</h3>
-          
+
           <h3>Disponibles: {stock} </h3>
           <ItemCount count={count} setCount={setCount} stock={stock} />
         </div>
