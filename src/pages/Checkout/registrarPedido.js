@@ -2,7 +2,7 @@ import { addDoc, collection, getFirestore } from "firebase/firestore/lite";
 
 import { initializeApp } from "firebase/app";
 
-// TODO: pasar las variables a .ENV
+
 const firebaseConfig = {
   apiKey: "AIzaSyAJrMfr1JzTRjkfAep1kzaJFSXV3AdWMMw",
   authDomain: "coderhouse-ecommerce-a4536.firebaseapp.com",

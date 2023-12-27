@@ -1,3 +1,4 @@
+import "./Checkout.css";
 import React, { useContext, useState } from "react";
 
 import { CartContext } from "../../context/CartContext";
@@ -32,13 +33,13 @@ const Checkout = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>Tu pedido:</div>
+    <form className="pedido" onSubmit={handleSubmit}>
+      <div className="titulo"><b>Tu pedido:</b></div>
 
       <div>Total a pagar: $ {totalPrice}</div>
       <label>
         Nombre:
-        <input
+        <input className="input"
           type="text"
           name="name"
           value={formData.name}
@@ -50,7 +51,7 @@ const Checkout = () => {
 
       <label>
         Apellido:
-        <input
+        <input className="input"
           type="text"
           name="surname"
           value={formData.surname}
@@ -62,7 +63,7 @@ const Checkout = () => {
 
       <label>
         Teléfono:
-        <input
+        <input className="input"
           type="text"
           name="phone"
           value={formData.phone}
@@ -74,7 +75,7 @@ const Checkout = () => {
 
       <label>
         Email:
-        <input
+        <input className="input"
           type="email"
           name="email"
           value={formData.email}
@@ -84,17 +85,6 @@ const Checkout = () => {
 
       <br />
 
-      <label>
-        Confirmar Email:
-        <input
-          type="email"
-          name="confirmEmail"
-          value={formData.confirmEmail}
-          onChange={handleChange}
-        />
-      </label>
-
-      <br />
 
       <button
         type="button"
