@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { clear } from '@testing-library/user-event/dist/clear';
 import '../../components/Pokemones/Pokemones.css';
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { pokemones, clear, removePokemon } = useContext(CartContext);
